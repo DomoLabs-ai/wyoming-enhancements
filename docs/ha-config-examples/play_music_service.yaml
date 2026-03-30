@@ -1,0 +1,18 @@
+# Home Assistant shell_command configuration for play_music
+# Add to your configuration.yaml or include in a shell_command package
+
+shell_command:
+  play_music: >-
+    /opt/wyoming-enhancements/scripts/play_music.sh
+    "{{ url }}"
+
+# Automation example:
+# automation:
+#   - alias: "Play music on satellite"
+#     trigger:
+#       - platform: event
+#         event_type: custom_play_music
+#     action:
+#       - service: shell_command.play_music
+#         data:
+#           url: "{{ trigger.event.data.url }}"
