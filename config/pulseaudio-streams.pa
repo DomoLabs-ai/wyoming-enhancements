@@ -1,0 +1,12 @@
+# PulseAudio stream separation for Wyoming satellites
+# Load after default.pa or place in /etc/pulse/default.pa.d/
+
+# Create dedicated sinks for TTS and wake word detection
+load-module module-null-sink sink_name=wyoming_tts sink_properties=device.description="Wyoming_TTS_Output"
+load-module module-null-sink sink_name=wyoming_wakeword sink_properties=device.description="Wyoming_WakeWord"
+
+# Loopback TTS sink to hardware output
+load-module module-loopback source=wyoming_tts.monitor sink=@DEFAULT_SINK@ latency_msec=50
+
+# Set default application routing
+set-default-sink wyoming_tts
