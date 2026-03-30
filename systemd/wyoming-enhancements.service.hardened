@@ -1,0 +1,22 @@
+[Unit]
+Description=Wyoming Enhancements Audio Processing
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=wyoming
+Group=wyoming
+EnvironmentFile=/etc/wyoming-enhancements/secrets.env
+ExecStart=/usr/bin/python3 /opt/wyoming-enhancements/enhance.py
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+ProtectSystem=strict
+ProtectHome=yes
+NoNewPrivileges=yes
+ReadWritePaths=/var/log/wyoming-enhancements
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,4 @@
+# Add these lines to .gitignore to prevent secret leaks:
+secrets.env
+*.env
+!secrets.env.example
