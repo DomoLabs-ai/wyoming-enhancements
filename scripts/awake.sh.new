@@ -1,0 +1,7 @@
+#!/bin/bash
+source "$(dirname "$0")/lib/common.sh"
+log_info "awake signal"
+require_cmd aplay
+F="${AWAKE_SOUND:-/opt/wyoming-enhancements/sounds/awake.wav}"
+[ -f "${F}" ] || { log_warn "not found: ${F}"; exit 0; }
+aplay -q "${F}" 2>/dev/null || log_warn "playback failed"
