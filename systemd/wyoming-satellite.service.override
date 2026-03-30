@@ -1,0 +1,9 @@
+# Place in /etc/systemd/system/wyoming-satellite.service.d/override.conf
+[Unit]
+After=pulseaudio.service pipewire-pulse.service
+Wants=pulseaudio.service
+
+[Service]
+ExecStartPre=/bin/sleep 2
+Restart=on-failure
+RestartSec=5
